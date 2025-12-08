@@ -1,0 +1,44 @@
+import time
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+
+#  POSITIVE TEST CASE
+def test_guvi_task10_positive_login():
+    driver = webdriver.Chrome()
+    driver.get("https://www.saucedemo.com/")
+
+    time.sleep(3)
+    driver.find_element(By.NAME, "user-name").send_keys("standard_user")
+    driver.find_element(By.NAME, "password").send_keys("secret_sauce")
+    time.sleep(3)
+
+    driver.find_element(By.ID, "login-button").click()
+    time.sleep(3)
+
+    text = driver.find_element(By.TAG_NAME, "html").text
+    print(" POSITIVE TEST OUTPUT:")
+    print(text)
+
+    driver.quit()
+
+
+# NEGATIVE TEST CASE
+def test_guvi_task10_negative_login():
+    driver = webdriver.Chrome()
+    driver.get("https://www.saucedemo.com/")
+
+    time.sleep(3)
+    driver.find_element(By.NAME, "user-name").send_keys("standard_user")
+    driver.find_element(By.NAME, "password").send_keys("wrong_password")
+    time.sleep(3)
+
+    driver.find_element(By.ID, "login-button").click()
+    time.sleep(3)
+
+    text = driver.find_element(By.TAG_NAME, "html").text
+    print("NEGATIVE TEST OUTPUT:")
+    print(text)
+
+    driver.quit()
